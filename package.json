@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx --watch ./src/server.ts"
+    "dev": "tsx watch --env-file .env ./src/server.ts",
+    "build": "tsup src --out-dir build",
+    "start": "node build/server.js"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -15,6 +17,7 @@
   "devDependencies": {
     "@types/express": "^5.0.3",
     "ts-node": "^10.9.2",
+    "tsup": "^8.3.0",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2"
   },
