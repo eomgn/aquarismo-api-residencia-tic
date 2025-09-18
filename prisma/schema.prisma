@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Accessories {
+   id String @id @default(uuid())
+   name String
+   type String
+   price Float
+   description String
+   mark String
+}
+
+
+model Order {
+  id String @id @default(uuid())
+  description String
+
+@@map("orders")
+}
+
+model Fish {
+  id                 String   @id @default(uuid())
+  name               String
+  scientificName     String
+  image              String
+  minTankSize        Int
+  temperament        String
+  diet               String
+  waterParameters    Json     // <- salva o objeto inteiro (ph, temp, gh)
+  description        String
+  compatibleTankmates String[] // <- lista de strings
+  price              Float
+
+  @@map("fishs")
+}
